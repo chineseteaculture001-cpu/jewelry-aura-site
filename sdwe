@@ -1,0 +1,7 @@
+cd ../jewelry-site
+git init
+git add .
+git commit -m "Initial launch"
+git branch -m main
+git remote add origin https://github.com/chineseteaculture001-cpu/jewelry-aura-site.git
+git push -u origin main
