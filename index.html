@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
     <title>Luminous Aura | Luxury Jewelry & Fine Craftsmanship</title>
     <meta name="description" content="Discover exquisite jewelry sourced from top certified suppliers. High-end designs at direct-to-consumer value.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -30,6 +31,17 @@
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
         nav a:hover { color: var(--gold); }
+
+        .category-filter {
+            display: flex; justify-content: center; gap: 20px; padding: 20px 8%; background: white;
+            border-bottom: 1px solid #eee; flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: none; border: none; font-family: var(--font-main); font-weight: 600;
+            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #666; cursor: pointer;
+            padding: 10px 0; border-bottom: 2px solid transparent;
+        }
+        .filter-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
 
         .hero {
             height: 80vh; background: var(--deep-sea); display: flex; align-items: center; justify-content: center; text-align: center; color: white;
@@ -84,10 +96,11 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#collections">Collections</a></li>
-                <li><a href="#heritage">Heritage</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="index.html" style="color:var(--gold);">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="heritage.html">Heritage</a></li>
+                <li><a href="journal.html">Journal</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
@@ -102,7 +115,17 @@
 
     <section id="collections">
         <div class="section-title">
-            <h2>Featured Collection</h2>
+            <h2>Our Collection</h2>
+        </div>
+        <div class="category-filter" id="categoryFilter">
+            <button class="filter-btn active" onclick="filterProducts('All')">All</button>
+            <button class="filter-btn" onclick="filterProducts('Necklaces')">Necklaces</button>
+            <button class="filter-btn" onclick="filterProducts('Earrings')">Earrings</button>
+            <button class="filter-btn" onclick="filterProducts('Bracelets')">Bracelets</button>
+            <button class="filter-btn" onclick="filterProducts('Rings')">Rings</button>
+            <button class="filter-btn" onclick="filterProducts('Jewelry Sets')">Sets</button>
+            <button class="filter-btn" onclick="filterProducts('Baroque Pearl')">Baroque</button>
+            <button class="filter-btn" onclick="filterProducts('DIY & Accessories')">DIY</button>
         </div>
         <div id="productGrid" class="product-grid">
             <!-- Products will be loaded here -->
@@ -150,26 +173,57 @@
     </div>
 
     <script>
+        let currentFilter = 'All';
+
         async function loadProducts() {
             try {
                 const response = await fetch('products.json');
                 const products = await response.json();
-                const grid = document.getElementById('productGrid');
-                
-                grid.innerHTML = products.map((p, index) => `
-                    <div class="product-card" onclick="openModal(${index})">
-                        <img src="${p.image}" alt="${p.title}">
+                window.productData = products;
+                renderProducts();
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            const filtered = currentFilter === 'All' 
+                ? window.productData 
+                : window.productData.filter(p => p.category === currentFilter);
+            
+            grid.innerHTML = filtered.map((p, index) => {
+                // Find original index in full data for modal
+                const originalIndex = window.productData.indexOf(p);
+                return `
+                    <div class="product-card" onclick="openModal(${originalIndex})">
+                        <img src="${p.image}" alt="${p.title}" loading="lazy">
                         <div class="product-info">
                             <h3>${p.title}</h3>
                             <p class="price">$${p.price}</p>
                         </div>
                     </div>
-                `).join('');
+                `;
+            }).join('');
+        }
 
-                window.productData = products;
-            } catch (error) {
-                console.error('Error loading products:', error);
-            }
+        function filterProducts(category) {
+            currentFilter = category;
+            
+            // Update UI
+            const btns = document.querySelectorAll('.filter-btn');
+            btns.forEach(btn => {
+                if (btn.innerText === category || (category === 'Jewelry Sets' && btn.innerText === 'Sets') || (category === 'Baroque Pearl' && btn.innerText === 'Baroque') || (category === 'DIY & Accessories' && btn.innerText === 'DIY')) {
+                    btn.classList.add('active');
+                } else if (category === 'All' && btn.innerText === 'All') {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            renderProducts();
+            document.getElementById('collections').scrollIntoView({ behavior: 'smooth' });
         }
 
         function openModal(index) {
@@ -198,3 +252,4 @@
     </script>
 </body>
 </html>
+
