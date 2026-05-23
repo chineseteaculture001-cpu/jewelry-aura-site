@@ -3,91 +3,198 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luminous Aura | Luxury Jewelry Collection</title>
-    <meta name="description" content="Explore a curated collection of fine jewelry. From deep sea blue sapphires to exquisite rings. Sourced with quality from leading 1688 suppliers.">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>Luminous Aura | Luxury Jewelry & Fine Craftsmanship</title>
+    <meta name="description" content="Discover exquisite jewelry sourced from top certified suppliers. High-end designs at direct-to-consumer value.">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        .deep-sea-blue { background-color: #001f3f; }
-        .text-sea-blue { color: #001f3f; }
-        .gold-accent { color: #D4AF37; }
-        .bg-gold { background-color: #D4AF37; }
+        :root {
+            --deep-sea: #001f3f;
+            --gold: #d4af37;
+            --silk: #fffdfa;
+            --ink: #0a0a0a;
+            --font-main: 'Montserrat', sans-serif;
+            --font-title: 'Playfair Display', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+        body { background-color: var(--silk); color: var(--ink); font-family: var(--font-main); line-height: 1.6; }
+
+        header {
+            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 253, 250, 0.98); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--deep-sea);
+        }
+        .brand-logo h1 { font-family: var(--font-title); font-size: 1.5rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
+
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
+        nav a:hover { color: var(--gold); }
+
+        .hero {
+            height: 80vh; background: var(--deep-sea); display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+            padding: 0 8%;
+        }
+        .hero-content h2 { font-family: var(--font-title); font-size: 4rem; margin-bottom: 20px; color: var(--gold); font-style: italic; }
+        .hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; font-weight: 300; }
+        .btn-gold { 
+            background: var(--gold); color: white; padding: 15px 40px; text-decoration: none; 
+            font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+        }
+        .btn-gold:hover { background: #b08d4a; transform: translateY(-3px); }
+
+        .section-title { text-align: center; padding: 80px 0 40px; }
+        .section-title h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--deep-sea); position: relative; display: inline-block; }
+        .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--gold); }
+
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; padding: 40px 8%; }
+        .product-card { background: white; border: 1px solid #eee; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
+        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .product-card img { width: 100%; height: 300px; object-fit: cover; }
+        .product-info { padding: 20px; text-align: center; }
+        .product-info h3 { font-family: var(--font-title); font-size: 1.1rem; margin-bottom: 10px; height: 2.4rem; overflow: hidden; }
+        .product-info .price { color: var(--gold); font-weight: 700; font-size: 1.2rem; }
+
+        footer { background: var(--deep-sea); color: white; padding: 80px 8% 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
+        .footer-col h3 { font-family: var(--font-title); margin-bottom: 20px; color: var(--gold); }
+        .footer-col p, .footer-col li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; list-style: none; }
+        .footer-bottom { border-top: 1px solid #1a3a5a; margin-top: 60px; padding-top: 20px; text-align: center; font-size: 0.7rem; color: #666; letter-spacing: 1px; }
+
+        /* Modal Styles */
+        #productModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center; }
+        .modal-content { background: white; width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1fr; }
+        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; z-index: 10; }
+        .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-info { padding: 40px; }
+        .modal-info h2 { font-family: var(--font-title); font-size: 2rem; margin-bottom: 20px; }
+        .modal-info .price { color: var(--gold); font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; display: block; }
+        .modal-info p { margin-bottom: 30px; color: #444; }
+
+        @media (max-width: 768px) {
+            .modal-content { grid-template-columns: 1fr; }
+            .hero-content h2 { font-size: 2.5rem; }
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <nav class="deep-sea-blue p-6 flex justify-between items-center text-white sticky top-0 z-50">
-        <div class="text-2xl font-bold tracking-widest uppercase">Luminous Aura</div>
-        <div class="space-x-8 hidden md:flex font-light">
-            <a href="#home" class="hover:text-amber-200 transition">Collections</a>
-            <a href="#about" class="hover:text-amber-200 transition">Our Heritage</a>
-            <a href="#contact" class="hover:text-amber-200 transition">Concierge</a>
+<body>
+    <header>
+        <div class="brand-logo">
+            <h1>Luminous Aura</h1>
         </div>
-    </nav>
-
-    <header id="home" class="deep-sea-blue py-32 px-6 text-center text-white">
-        <h1 class="text-5xl md:text-7xl font-serif mb-6 gold-accent italic">Radiance Reimagined</h1>
-        <p class="text-xl text-blue-100 mb-10 max-w-2xl mx-auto font-light">Experience the allure of fine jewelry, where every piece is a testament to luxury and artisan excellence. Verified by Shandong Mingzhi Education Consulting.</p>
-        <a href="https://wa.me/8618663543398" class="bg-gold text-white px-10 py-4 rounded-sm text-lg font-bold hover:bg-amber-600 transition tracking-widest uppercase">
-            Inquire Now
-        </a>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collections">Collections</a></li>
+                <li><a href="#heritage">Heritage</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <section class="py-20 bg-white">
-        <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-4xl font-serif text-center mb-16 text-sea-blue">Featured Collection</h2>
-            <div class="grid md:grid-cols-3 gap-12">
-                <div class="group cursor-pointer">
-                    <div class="h-80 bg-gray-200 mb-6 overflow-hidden">
-                        <div class="w-full h-full bg-blue-900 flex items-center justify-center text-white">Sapphire Dream</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Deep Sea Blue Sapphire Ring</h3>
-                    <p class="text-gray-500 font-light">A majestic sapphire of profound depth, encased in a refined setting that speaks of timeless sophistication and grace.</p>
-                </div>
-                <div class="group cursor-pointer">
-                    <div class="h-80 bg-gray-200 mb-6 overflow-hidden">
-                        <div class="w-full h-full bg-blue-800 flex items-center justify-center text-white">Pearl Aura</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Oceanic Pearl Necklace</h3>
-                    <p class="text-gray-500 font-light">Lustrous spheres of pure elegance, meticulously strung to celebrate the ethereal beauty of the ocean's finest treasures.</p>
-                </div>
-                <div class="group cursor-pointer">
-                    <div class="h-80 bg-gray-200 mb-6 overflow-hidden">
-                        <div class="w-full h-full bg-blue-700 flex items-center justify-center text-white">Diamond Wave</div>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2">Crystalline Diamond Earrings</h3>
-                    <p class="text-gray-500 font-light">Exquisite diamonds crafted to capture and reflect every flicker of light, embodying a brilliance that transcends the ordinary.</p>
-                </div>
-            </div>
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Radiance Reimagined</h2>
+            <p>Experience the allure of fine jewelry, where every piece is a testament to luxury and artisan excellence.</p>
+            <a href="#collections" class="btn-gold">Explore Collection</a>
         </div>
     </section>
 
-    <section id="about" class="py-20 bg-gray-100">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <h2 class="text-3xl font-serif mb-8 text-sea-blue">Heritage of Excellence</h2>
-            <p class="text-lg leading-relaxed text-gray-700 font-light">Luminous Aura is a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>. We leverage our deep connections with certified 1688 jewelry suppliers to bring you high-end designs at direct-to-consumer value, ensuring quality and authenticity in every shipment to our global clientele.</p>
+    <section id="collections">
+        <div class="section-title">
+            <h2>Featured Collection</h2>
+        </div>
+        <div id="productGrid" class="product-grid">
+            <!-- Products will be loaded here -->
         </div>
     </section>
 
-    <footer id="contact" class="deep-sea-blue text-white py-16 px-6">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12">
-            <div>
-                <h3 class="text-3xl font-bold mb-4 tracking-tighter">LUMINOUS AURA</h3>
-                <p class="text-blue-200 font-light">A Shandong Mingzhi Education Consulting Project.</p>
-                <p class="text-blue-200 font-light mt-2">Email: chineseteaculture001@gmail.com</p>
+    <section id="heritage" style="background: #f4f4f4; padding: 100px 8%; text-align: center;">
+        <div class="section-title">
+            <h2>Our Heritage</h2>
+        </div>
+        <p style="max-width: 800px; margin: 0 auto; line-height: 2;">
+            Luminous Aura is a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>. 
+            We leverage our deep connections with certified 1688 jewelry suppliers to bring you high-end designs 
+            at direct-to-consumer value, ensuring quality and authenticity in every shipment to our global clientele.
+        </p>
+    </section>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>Luminous Aura</h3>
+                <p>A Shandong Mingzhi Education Consulting Project.</p>
+                <p>Curating brilliance for the modern connoisseur.</p>
             </div>
-            <div>
-                <h4 class="text-xl font-bold mb-6 gold-accent">Private Concierge</h4>
-                <ul class="space-y-4 text-blue-100 font-light">
-                    <li><i class="fas fa-phone-alt mr-3 gold-accent"></i> +86 18663543398</li>
-                    <li><i class="fab fa-whatsapp mr-3 gold-accent"></i> WhatsApp Consultation: +86 18663543398</li>
-                    <li><i class="fas fa-envelope mr-3 gold-accent"></i> chineseteaculture001@gmail.com</li>
-                    <li><i class="fas fa-globe mr-3 gold-accent"></i> Based in Shandong, China</li>
+            <div class="footer-col">
+                <h3>Concierge</h3>
+                <ul>
+                    <li><i class="fab fa-whatsapp"></i> +86 18663543398</li>
+                    <li><i class="fas fa-envelope"></i> luminousaura001@gmail.com</li>
+                    <li><i class="fas fa-map-marker-alt"></i> Based in Shandong, China</li>
                 </ul>
             </div>
         </div>
-        <div class="mt-16 text-center border-t border-blue-900 pt-8 text-blue-400 text-xs tracking-widest uppercase">
-            &copy; 2026 Luminous Aura. All Rights Reserved.
+        <div class="footer-bottom">
+            &copy; 2026 LUMINOUS AURA. ALL RIGHTS RESERVED.
         </div>
     </footer>
+
+    <div id="productModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <div class="modal-img" id="modalImg"></div>
+            <div class="modal-info" id="modalInfo"></div>
+        </div>
+    </div>
+
+    <script>
+        async function loadProducts() {
+            try {
+                const response = await fetch('products.json');
+                const products = await response.json();
+                const grid = document.getElementById('productGrid');
+                
+                grid.innerHTML = products.map((p, index) => `
+                    <div class="product-card" onclick="openModal(${index})">
+                        <img src="${p.image}" alt="${p.title}">
+                        <div class="product-info">
+                            <h3>${p.title}</h3>
+                            <p class="price">$${p.price}</p>
+                        </div>
+                    </div>
+                `).join('');
+
+                window.productData = products;
+            } catch (error) {
+                console.error('Error loading products:', error);
+            }
+        }
+
+        function openModal(index) {
+            const product = window.productData[index];
+            document.getElementById('modalImg').innerHTML = `<img src="${product.image}" alt="${product.title}">`;
+            document.getElementById('modalInfo').innerHTML = `
+                <h2>${product.title}</h2>
+                <span class="price">$${product.price}</span>
+                <p>Premium quality craftsmanship. Sourced from certified suppliers to ensure the highest standards of beauty and durability.</p>
+                <a href="https://wa.me/8618663543398" class="btn-gold" target="_blank">Inquire via WhatsApp</a>
+            `;
+            document.getElementById('productModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('productModal')) {
+                closeModal();
+            }
+        }
+
+        loadProducts();
+    </script>
 </body>
 </html>
