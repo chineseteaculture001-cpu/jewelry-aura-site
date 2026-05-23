@@ -48,12 +48,26 @@
         </nav>
     </header>
     <div class="container">
-        <h1>About Luminous Aura</h1>
-        <p>Luminous Aura was born from a passion for timeless elegance and the belief that high-end jewelry should be accessible to those who appreciate true craftsmanship. We curate a selection of fine pieces that speak to the soul, reflecting the inner radiance of every individual.</p>
-        <p>As a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>, we bridge the gap between world-class certified suppliers and global connoisseurs. Our unique position allows us to source premium materials—from deep-sea pearls to ethically sourced gemstones—at exceptional value.</p>
-        <h2>Our Vision</h2>
-        <p>To be the premier destination for modern luxury, where traditional artisan skills meet contemporary design. We strive to create an "Aura" of sophistication around our clients, providing jewelry that is not just an accessory, but a legacy.</p>
+        <h1 id="page_title">About Luminous Aura</h1>
+        <p id="page_intro">Luminous Aura was born from a passion for timeless elegance and the belief that high-end jewelry should be accessible to those who appreciate true craftsmanship. We curate a selection of fine pieces that speak to the soul, reflecting the inner radiance of every individual.</p>
+        <p id="page_subsidiary">As a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>, we bridge the gap between world-class certified suppliers and global connoisseurs. Our unique position allows us to source premium materials—from deep-sea pearls to ethically sourced gemstones—at exceptional value.</p>
+        <h2 id="vision_title">Our Vision</h2>
+        <p id="vision_desc">To be the premier destination for modern luxury, where traditional artisan skills meet contemporary design. We strive to create an "Aura" of sophistication around our clients, providing jewelry that is not just an accessory, but a legacy.</p>
     </div>
+    <script>
+        async function loadContent() {
+            try {
+                const res = await fetch('content/about.json');
+                const d = await res.json();
+                if(d.title) document.getElementById('page_title').innerText = d.title;
+                if(d.intro) document.getElementById('page_intro').innerText = d.intro;
+                if(d.subsidiary_info) document.getElementById('page_subsidiary').innerText = d.subsidiary_info;
+                if(d.vision_title) document.getElementById('vision_title').innerText = d.vision_title;
+                if(d.vision_desc) document.getElementById('vision_desc').innerText = d.vision_desc;
+            } catch(e) {}
+        }
+        loadContent();
+    </script>
     <footer>
         <div class="footer-grid">
             <div class="footer-col"><h3>Luminous Aura</h3><p>A Shandong Mingzhi Project.</p></div>
