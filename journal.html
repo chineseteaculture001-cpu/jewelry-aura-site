@@ -50,21 +50,30 @@
             </ul>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" id="journal_container">
         <h1>Luminous Journal</h1>
         
-        <div class="journal-item">
-            <span class="date">May 24, 2026</span>
-            <h2>The Allure of the Baroque Pearl</h2>
-            <p>Unlike perfectly symmetrical pearls, the Baroque pearl celebrates the beauty of imperfection. In this entry, we explore how its irregular shapes are making a comeback in 2026 fashion...</p>
-        </div>
-
-        <div class="journal-item">
-            <span class="date">May 15, 2026</span>
-            <h2>Caring for Your Fine Jewelry</h2>
-            <p>To maintain that "Luminous Aura," proper care is essential. Learn the best practices for cleaning your sapphire rings and protecting your pearls from environmental factors...</p>
-        </div>
+        <!-- Posts will load here -->
     </div>
+    <script>
+        async function loadContent() {
+            try {
+                const res = await fetch('content/journal.json');
+                const d = await res.json();
+                const container = document.getElementById('journal_container');
+                if(d.posts) {
+                    container.innerHTML = '<h1>Luminous Journal</h1>' + d.posts.map(p => `
+                        <div class="journal-item">
+                            <span class="date">${p.date}</span>
+                            <h2>${p.title}</h2>
+                            <p>${p.excerpt}</p>
+                        </div>
+                    `).join('');
+                }
+            } catch(e) {}
+        }
+        loadContent();
+    </script>
     <footer>
         <div class="footer-grid">
             <div class="footer-col"><h3>Luminous Aura</h3><p>A Shandong Mingzhi Project.</p></div>
