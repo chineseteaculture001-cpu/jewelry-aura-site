@@ -13,7 +13,7 @@ collections:
     label: "Inventory Management"
     files:
       - name: "products"
-        label: "Product Catalog"
+        label: "Product Catalog (Full List)"
         file: "products.json"
         format: "json"
         fields:
@@ -28,15 +28,56 @@ collections:
               - {label: "Currency", name: "currency", widget: "hidden", default: "USD"}
               - {label: "Category", name: "category", widget: "select", options: ["Necklaces", "Earrings", "Bracelets", "Rings", "Jewelry Sets", "Baroque Pearl", "DIY & Accessories", "New Arrivals"]}
               - {label: "Image URL", name: "image", widget: "string"}
-              - {label: "Detailed Image (Optional)", name: "detailed_image", widget: "image", required: false}
 
   - name: "pages"
-    label: "Pages"
+    label: "Pages Content"
     files:
       - name: "home"
-        label: "Home Page Content"
+        label: "Home Page (Hero & Welcome)"
         file: "content/home.json"
         fields:
           - {label: "Hero Title", name: "hero_title", widget: "string"}
           - {label: "Hero Slogan", name: "hero_slogan", widget: "string"}
           - {label: "Hero Description", name: "hero_desc", widget: "text"}
+
+      - name: "about"
+        label: "About Us Page"
+        file: "content/about.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Introduction", name: "intro", widget: "text"}
+          - {label: "Subsidiary Info", name: "subsidiary_info", widget: "text"}
+          - {label: "Vision Title", name: "vision_title", widget: "string"}
+          - {label: "Vision Description", name: "vision_desc", widget: "text"}
+
+      - name: "heritage"
+        label: "Our Heritage Page"
+        file: "content/heritage.json"
+        fields:
+          - {label: "Page Title", name: "title", widget: "string"}
+          - {label: "Introduction", name: "intro", widget: "text"}
+          - {label: "Sourcing Title", name: "sourcing_title", widget: "string"}
+          - {label: "Sourcing Description", name: "sourcing_desc", widget: "text"}
+          - {label: "Art Title", name: "art_title", widget: "string"}
+          - {label: "Art Description", name: "art_desc", widget: "text"}
+
+      - name: "contact"
+        label: "Contact & Footer Info"
+        file: "content/contact.json"
+        fields:
+          - {label: "WhatsApp Number", name: "whatsapp", widget: "string"}
+          - {label: "Public Email", name: "email", widget: "string"}
+          - {label: "Location", name: "location", widget: "string"}
+          - {label: "Footer Slogan", name: "footer_text", widget: "string"}
+
+      - name: "journal"
+        label: "Journal (Blog Posts)"
+        file: "content/journal.json"
+        fields:
+          - label: "All Posts"
+            name: "posts"
+            widget: "list"
+            fields:
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Excerpt", name: "excerpt", widget: "text"}
