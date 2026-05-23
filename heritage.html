@@ -12,7 +12,14 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background-color: var(--silk); color: var(--ink); font-family: var(--font-main); line-height: 1.8; }
         header { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--deep-sea); }
-        .brand-logo h1 { font-family: var(--font-title); font-size: 1.5rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
+        .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .brand-logo .seal {
+            width: 45px; height: 45px; background: var(--gold); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-title); font-weight: 900; font-size: 0.8rem;
+            text-transform: uppercase; border-radius: 2px; box-shadow: 2px 2px 0 var(--deep-sea);
+        }
+        .brand-logo h1 { font-family: var(--font-title); font-size: 1.2rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
         nav a:hover { color: var(--gold); }
@@ -26,7 +33,10 @@
 </head>
 <body>
     <header>
-        <div class="brand-logo"><a href="index.html" style="text-decoration:none;"><h1>Luminous Aura</h1></a></div>
+        <a href="index.html" class="brand-logo">
+            <div class="seal">Aura</div>
+            <h1>Luminous Aura</h1>
+        </a>
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
@@ -53,4 +63,3 @@
     </footer>
 </body>
 </html>
-

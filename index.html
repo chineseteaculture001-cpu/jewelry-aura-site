@@ -26,7 +26,14 @@
             background: rgba(255, 253, 250, 0.98); backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--deep-sea);
         }
-        .brand-logo h1 { font-family: var(--font-title); font-size: 1.5rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
+        .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
+        .brand-logo .seal {
+            width: 45px; height: 45px; background: var(--gold); color: white;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-title); font-weight: 900; font-size: 0.8rem;
+            text-transform: uppercase; border-radius: 2px; box-shadow: 2px 2px 0 var(--deep-sea);
+        }
+        .brand-logo h1 { font-family: var(--font-title); font-size: 1.2rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
 
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
@@ -91,9 +98,10 @@
 </head>
 <body>
     <header>
-        <div class="brand-logo">
+        <a href="index.html" class="brand-logo">
+            <div class="seal">Aura</div>
             <h1>Luminous Aura</h1>
-        </div>
+        </a>
         <nav>
             <ul>
                 <li><a href="index.html" style="color:var(--gold);">Home</a></li>
@@ -147,7 +155,7 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>Luminous Aura</h3>
-                <p>A Shandong Mingzhi Education Consulting Project.</p>
+                <p>A Shandong Mingzhi Project.</p>
                 <p>Curating brilliance for the modern connoisseur.</p>
             </div>
             <div class="footer-col">
@@ -193,7 +201,6 @@
                 : window.productData.filter(p => p.category === currentFilter);
             
             grid.innerHTML = filtered.map((p, index) => {
-                // Find original index in full data for modal
                 const originalIndex = window.productData.indexOf(p);
                 return `
                     <div class="product-card" onclick="openModal(${originalIndex})">
@@ -209,8 +216,6 @@
 
         function filterProducts(category) {
             currentFilter = category;
-            
-            // Update UI
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => {
                 if (btn.innerText === category || (category === 'Jewelry Sets' && btn.innerText === 'Sets') || (category === 'Baroque Pearl' && btn.innerText === 'Baroque') || (category === 'DIY & Accessories' && btn.innerText === 'DIY')) {
@@ -221,7 +226,6 @@
                     btn.classList.remove('active');
                 }
             });
-
             renderProducts();
             document.getElementById('collections').scrollIntoView({ behavior: 'smooth' });
         }
@@ -252,4 +256,3 @@
     </script>
 </body>
 </html>
-
