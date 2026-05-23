@@ -142,9 +142,9 @@
 
     <section id="heritage" style="background: #f4f4f4; padding: 100px 8%; text-align: center;">
         <div class="section-title">
-            <h2>Our Heritage</h2>
+            <h2 id="heritage_title">Our Heritage</h2>
         </div>
-        <p style="max-width: 800px; margin: 0 auto; line-height: 2;">
+        <p id="heritage_desc" style="max-width: 800px; margin: 0 auto; line-height: 2;">
             Luminous Aura is a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>. 
             We leverage our deep connections with certified 1688 jewelry suppliers to bring you high-end designs 
             at direct-to-consumer value, ensuring quality and authenticity in every shipment to our global clientele.
@@ -155,15 +155,14 @@
         <div class="footer-grid">
             <div class="footer-col">
                 <h3>Luminous Aura</h3>
-                <p>A Shandong Mingzhi Project.</p>
-                <p>Curating brilliance for the modern connoisseur.</p>
+                <p id="footer_slogan">A Shandong Mingzhi Project. Curating brilliance for the modern connoisseur.</p>
             </div>
             <div class="footer-col">
                 <h3>Concierge</h3>
                 <ul>
-                    <li><i class="fab fa-whatsapp"></i> +86 18663543398</li>
-                    <li><i class="fas fa-envelope"></i> luminousaura001@gmail.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Based in Shandong, China</li>
+                    <li><i class="fab fa-whatsapp"></i> <span id="contact_whatsapp">+86 18663543398</span></li>
+                    <li><i class="fas fa-envelope"></i> <span id="contact_email">luminousaura001@gmail.com</span></li>
+                    <li><i class="fas fa-map-marker-alt"></i> <span id="contact_loc">Based in Shandong, China</span></li>
                 </ul>
             </div>
         </div>
@@ -257,10 +256,25 @@
 
         async function loadSettings() {
             try {
-                const response = await fetch('content/home.json');
-                const s = await response.json();
+                // Load Home Content
+                const homeRes = await fetch('content/home.json');
+                const s = await homeRes.json();
                 if(s.hero_title) document.querySelector('.hero-content h2').innerText = s.hero_title;
                 if(s.hero_desc) document.querySelector('.hero-content p').innerText = s.hero_desc;
+
+                // Load Heritage Snippet
+                const heritageRes = await fetch('content/heritage.json');
+                const h = await heritageRes.json();
+                if(h.title) document.getElementById('heritage_title').innerText = h.title;
+                if(h.intro) document.getElementById('heritage_desc').innerText = h.intro;
+
+                // Load Contact/Footer
+                const contactRes = await fetch('content/contact.json');
+                const c = await contactRes.json();
+                if(c.footer_text) document.getElementById('footer_slogan').innerText = c.footer_text;
+                if(c.whatsapp) document.getElementById('contact_whatsapp').innerText = c.whatsapp;
+                if(c.email) document.getElementById('contact_email').innerText = c.email;
+                if(c.location) document.getElementById('contact_loc').innerText = c.location;
             } catch(e) {}
         }
     </script>
