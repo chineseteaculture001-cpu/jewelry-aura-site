@@ -186,8 +186,8 @@
         async function loadProducts() {
             try {
                 const response = await fetch('products.json');
-                const products = await response.json();
-                window.productData = products;
+                const data = await response.json();
+                window.productData = data.products || data; // Handle both object and legacy array format
                 renderProducts();
             } catch (error) {
                 console.error('Error loading products:', error);
@@ -253,6 +253,16 @@
         }
 
         loadProducts();
+        loadSettings();
+
+        async function loadSettings() {
+            try {
+                const response = await fetch('content/home.json');
+                const s = await response.json();
+                if(s.hero_title) document.querySelector('.hero-content h2').innerText = s.hero_title;
+                if(s.hero_desc) document.querySelector('.hero-content p').innerText = s.hero_desc;
+            } catch(e) {}
+        }
     </script>
 </body>
 </html>

@@ -1,0 +1,42 @@
+backend:
+  name: github
+  repo: chineseteaculture001-cpu/jewelry-aura-site
+  branch: main
+  base_url: https://jewelry.thejaderitual.com
+  auth_endpoint: api/auth
+
+media_folder: "assets/images"
+public_folder: "/assets/images"
+
+collections:
+  - name: "products_collection"
+    label: "Inventory Management"
+    files:
+      - name: "products"
+        label: "Product Catalog"
+        file: "products.json"
+        format: "json"
+        fields:
+          - label: "All Products"
+            name: "products"
+            widget: "list"
+            allow_add: true
+            summary: "{{fields.title}} - ${{fields.price}}"
+            fields:
+              - {label: "Product Title", name: "title", widget: "string"}
+              - {label: "Price (USD)", name: "price", widget: "number", value_type: "float"}
+              - {label: "Currency", name: "currency", widget: "hidden", default: "USD"}
+              - {label: "Category", name: "category", widget: "select", options: ["Necklaces", "Earrings", "Bracelets", "Rings", "Jewelry Sets", "Baroque Pearl", "DIY & Accessories", "New Arrivals"]}
+              - {label: "Image URL", name: "image", widget: "string"}
+              - {label: "Detailed Image (Optional)", name: "detailed_image", widget: "image", required: false}
+
+  - name: "pages"
+    label: "Pages"
+    files:
+      - name: "home"
+        label: "Home Page Content"
+        file: "content/home.json"
+        fields:
+          - {label: "Hero Title", name: "hero_title", widget: "string"}
+          - {label: "Hero Slogan", name: "hero_slogan", widget: "string"}
+          - {label: "Hero Description", name: "hero_desc", widget: "text"}
