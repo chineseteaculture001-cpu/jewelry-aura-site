@@ -26,8 +26,8 @@ collections:
               - {label: "Product Title", name: "title", widget: "string"}
               - {label: "Price (USD)", name: "price", widget: "number", value_type: "float"}
               - {label: "Currency", name: "currency", widget: "hidden", default: "USD"}
-              - {label: "Category", name: "category", widget: "select", options: ["Necklaces", "Earrings", "Bracelets", "Rings", "Jewelry Sets", "Baroque Pearl", "DIY & Accessories", "New Arrivals"]}
-              - {label: "Image URL", name: "image", widget: "string"}
+              - {label: "Category", name: "category", widget: "select", options: ["Necklaces", "Earrings", "Bracelets", "Rings", "Jewelry Sets", "DIY & Materials", "Fine Jewelry"]}
+              - {label: "Product Image", name: "image", widget: "image"}
 
   - name: "pages"
     label: "Pages Content"

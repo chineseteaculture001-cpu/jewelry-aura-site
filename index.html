@@ -132,8 +132,8 @@
             <button class="filter-btn" onclick="filterProducts('Bracelets')">Bracelets</button>
             <button class="filter-btn" onclick="filterProducts('Rings')">Rings</button>
             <button class="filter-btn" onclick="filterProducts('Jewelry Sets')">Sets</button>
-            <button class="filter-btn" onclick="filterProducts('Baroque Pearl')">Baroque</button>
-            <button class="filter-btn" onclick="filterProducts('DIY & Accessories')">DIY</button>
+            <button class="filter-btn" onclick="filterProducts('DIY & Materials')">DIY & Materials</button>
+            <button class="filter-btn" onclick="filterProducts('Fine Jewelry')">Fine Jewelry</button>
         </div>
         <div id="productGrid" class="product-grid">
             <!-- Products will be loaded here -->
@@ -217,9 +217,7 @@
             currentFilter = category;
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => {
-                if (btn.innerText === category || (category === 'Jewelry Sets' && btn.innerText === 'Sets') || (category === 'Baroque Pearl' && btn.innerText === 'Baroque') || (category === 'DIY & Accessories' && btn.innerText === 'DIY')) {
-                    btn.classList.add('active');
-                } else if (category === 'All' && btn.innerText === 'All') {
+                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
                     btn.classList.add('active');
                 } else {
                     btn.classList.remove('active');
