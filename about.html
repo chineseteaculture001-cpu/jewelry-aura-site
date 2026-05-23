@@ -8,27 +8,47 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        :root { --deep-sea: #001f3f; --gold: #d4af37; --silk: #fffdfa; --ink: #0a0a0a; --font-main: 'Montserrat', sans-serif; --font-title: 'Playfair Display', serif; }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --deep-sea: #001f3f;
+            --gold: #d4af37;
+            --seal-red: #a31f34;
+            --silk: #fffdfa;
+            --ink: #0a0a0a;
+            --font-main: 'Montserrat', sans-serif;
+            --font-title: 'Playfair Display', serif;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
         body { background-color: var(--silk); color: var(--ink); font-family: var(--font-main); line-height: 1.8; }
-        header { padding: 20px 8%; display: flex; justify-content: space-between; align-items: center; background: white; position: sticky; top: 0; z-index: 1000; border-bottom: 3px solid var(--deep-sea); }
+
+        header {
+            padding: 30px 8%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 253, 250, 0.95); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid rgba(0, 31, 63, 0.1);
+        }
         .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
         .brand-logo .seal {
-            width: 45px; height: 45px; background: var(--gold); color: white;
+            width: 50px; height: 50px; border: 2px solid var(--seal-red); color: var(--seal-red);
             display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-title); font-weight: 900; font-size: 0.8rem;
-            text-transform: uppercase; border-radius: 2px; box-shadow: 2px 2px 0 var(--deep-sea);
+            font-family: var(--font-title); font-weight: 700; font-size: 0.9rem;
+            text-transform: uppercase; border-radius: 0; transition: 0.3s;
+            background: white;
         }
+        .brand-logo:hover .seal { background: var(--seal-red); color: white; }
         .brand-logo h1 { font-family: var(--font-title); font-size: 1.2rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
+
         nav ul { display: flex; list-style: none; gap: 30px; }
         nav a { text-decoration: none; color: var(--ink); font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
         nav a:hover { color: var(--gold); }
-        .container { max-width: 900px; margin: 80px auto; padding: 0 8%; }
-        h1, h2 { font-family: var(--font-title); color: var(--deep-sea); margin-bottom: 30px; }
-        p { margin-bottom: 20px; color: #444; }
-        footer { background: var(--deep-sea); color: white; padding: 60px 8%; margin-top: 80px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 40px; }
+
+        .container { max-width: 900px; margin: 100px auto; padding: 0 8%; }
+        h1, h2 { font-family: var(--font-title); color: var(--deep-sea); margin-bottom: 30px; letter-spacing: 1px; }
+        p { margin-bottom: 25px; color: #444; font-size: 1.05rem; }
+
+        footer { background: var(--deep-sea); color: white; padding: 80px 8% 40px; margin-top: 100px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
         .footer-col h3 { font-family: var(--font-title); margin-bottom: 20px; color: var(--gold); }
+        .footer-col p, .footer-col li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; list-style: none; }
     </style>
 </head>
 <body>

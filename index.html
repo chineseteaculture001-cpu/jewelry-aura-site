@@ -12,6 +12,7 @@
         :root {
             --deep-sea: #001f3f;
             --gold: #d4af37;
+            --seal-red: #a31f34;
             --silk: #fffdfa;
             --ink: #0a0a0a;
             --font-main: 'Montserrat', sans-serif;
@@ -19,20 +20,22 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--silk); color: var(--ink); font-family: var(--font-main); line-height: 1.6; }
+        body { background-color: var(--silk); color: var(--ink); font-family: var(--font-main); line-height: 1.8; }
 
         header {
-            padding: 20px 8%; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(255, 253, 250, 0.98); backdrop-filter: blur(10px);
-            position: sticky; top: 0; z-index: 2000; border-bottom: 3px solid var(--deep-sea);
+            padding: 30px 8%; display: flex; justify-content: space-between; align-items: center;
+            background: rgba(255, 253, 250, 0.95); backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid rgba(0, 31, 63, 0.1);
         }
         .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
         .brand-logo .seal {
-            width: 45px; height: 45px; background: var(--gold); color: white;
+            width: 50px; height: 50px; background: var(--seal-red); color: white;
             display: flex; align-items: center; justify-content: center;
-            font-family: var(--font-title); font-weight: 900; font-size: 0.8rem;
-            text-transform: uppercase; border-radius: 2px; box-shadow: 2px 2px 0 var(--deep-sea);
+            font-family: var(--font-title); font-weight: 700; font-size: 0.9rem;
+            text-transform: uppercase; border-radius: 0; transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 4px 15px rgba(163, 31, 52, 0.2);
         }
+        .brand-logo:hover .seal { background: white; color: var(--seal-red); border: 2px solid var(--seal-red); transform: rotate(5deg); }
         .brand-logo h1 { font-family: var(--font-title); font-size: 1.2rem; color: var(--deep-sea); text-transform: uppercase; letter-spacing: 2px; }
 
         nav ul { display: flex; list-style: none; gap: 30px; }
@@ -40,55 +43,63 @@
         nav a:hover { color: var(--gold); }
 
         .category-filter {
-            display: flex; justify-content: center; gap: 20px; padding: 20px 8%; background: white;
-            border-bottom: 1px solid #eee; flex-wrap: wrap;
+            display: flex; justify-content: center; gap: 20px; padding: 30px 8%; background: white;
+            border-bottom: 1px solid rgba(0,0,0,0.05); flex-wrap: wrap; position: sticky; top: 110px; z-index: 1000;
         }
         .filter-btn {
             background: none; border: none; font-family: var(--font-main); font-weight: 600;
-            font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; color: #666; cursor: pointer;
-            padding: 10px 0; border-bottom: 2px solid transparent;
+            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: #888; cursor: pointer;
+            padding: 10px 15px; transition: 0.3s;
         }
-        .filter-btn.active { color: var(--gold); border-bottom: 2px solid var(--gold); }
+        .filter-btn.active { color: var(--seal-red); font-weight: 800; }
 
         .hero {
-            height: 80vh; background: var(--deep-sea); display: flex; align-items: center; justify-content: center; text-align: center; color: white;
-            padding: 0 8%;
+            height: 90vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            text-align: center; background: linear-gradient(rgba(0,31,63,0.3), rgba(0,31,63,0.3)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover; background-position: center; color: white; padding: 0 8%;
         }
-        .hero-content h2 { font-family: var(--font-title); font-size: 4rem; margin-bottom: 20px; color: var(--gold); font-style: italic; }
-        .hero-content p { font-size: 1.2rem; max-width: 600px; margin: 0 auto 30px; font-weight: 300; }
-        .btn-gold { 
-            background: var(--gold); color: white; padding: 15px 40px; text-decoration: none; 
-            font-weight: 700; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+        .hero-content h2 { font-family: var(--font-title); font-size: 4.5rem; margin-bottom: 20px; letter-spacing: 5px; text-transform: uppercase; text-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .hero-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 40px; font-weight: 300; letter-spacing: 1px; opacity: 0.9; }
+        .btn-gold {
+            padding: 18px 45px; background: var(--gold); color: var(--deep-sea); text-decoration: none;
+            font-weight: 700; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 3px;
+            transition: 0.4s; border: 1px solid var(--gold);
         }
-        .btn-gold:hover { background: #b08d4a; transform: translateY(-3px); }
+        .btn-gold:hover { background: transparent; color: white; border-color: white; backdrop-filter: blur(5px); }
 
-        .section-title { text-align: center; padding: 80px 0 40px; }
-        .section-title h2 { font-family: var(--font-title); font-size: 2.5rem; color: var(--deep-sea); position: relative; display: inline-block; }
-        .section-title h2::after { content: ''; position: absolute; bottom: -10px; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--gold); }
+        .section-title { text-align: center; padding: 120px 8% 60px; }
+        .section-title h2 { font-family: var(--font-title); font-size: 2.8rem; color: var(--deep-sea); margin-bottom: 15px; letter-spacing: 2px; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; padding: 40px 8%; }
-        .product-card { background: white; border: 1px solid #eee; transition: 0.3s; cursor: pointer; position: relative; overflow: hidden; }
-        .product-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .product-card img { width: 100%; height: 300px; object-fit: cover; }
-        .product-info { padding: 20px; text-align: center; }
-        .product-info h3 { font-family: var(--font-title); font-size: 1.1rem; margin-bottom: 10px; height: 2.4rem; overflow: hidden; }
-        .product-info .price { color: var(--gold); font-weight: 700; font-size: 1.2rem; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 40px; padding: 0 8% 100px; }
+        .product-card {
+            background: white; border-radius: 0; overflow: hidden; transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            border: 1px solid rgba(0,31,63,0.05); position: relative; cursor: pointer;
+        }
+        .product-card:hover { transform: translateY(-15px); box-shadow: 0 30px 60px rgba(0,31,63,0.1); }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; transition: 0.8s; }
+        .product-card:hover img { transform: scale(1.05); }
+        .product-info { padding: 30px; text-align: center; }
+        .product-info h3 { font-family: var(--font-title); font-size: 1rem; color: var(--deep-sea); margin-bottom: 15px; height: 3rem; overflow: hidden; letter-spacing: 0.5px; }
+        .product-info .price { font-size: 1.2rem; color: var(--gold); font-weight: 500; font-family: var(--font-title); }
 
-        footer { background: var(--deep-sea); color: white; padding: 80px 8% 40px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 60px; }
-        .footer-col h3 { font-family: var(--font-title); margin-bottom: 20px; color: var(--gold); }
-        .footer-col p, .footer-col li { font-size: 0.9rem; color: #ccc; margin-bottom: 10px; list-style: none; }
-        .footer-bottom { border-top: 1px solid #1a3a5a; margin-top: 60px; padding-top: 20px; text-align: center; font-size: 0.7rem; color: #666; letter-spacing: 1px; }
+        footer { background: var(--deep-sea); color: white; padding: 100px 8% 40px; }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 80px; }
+        .footer-col h3 { font-family: var(--font-title); margin-bottom: 30px; color: var(--gold); font-size: 1.4rem; letter-spacing: 1px; }
+        .footer-col p, .footer-col li { font-size: 0.95rem; color: #bbb; margin-bottom: 15px; list-style: none; }
+        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 80px; padding-top: 40px; text-align: center; font-size: 0.75rem; color: #666; letter-spacing: 2px; }
 
         /* Modal Styles */
-        #productModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center; }
-        .modal-content { background: white; width: 90%; max-width: 1000px; max-height: 90vh; overflow-y: auto; position: relative; display: grid; grid-template-columns: 1fr 1fr; }
-        .modal-close { position: absolute; top: 20px; right: 20px; font-size: 1.5rem; cursor: pointer; z-index: 10; }
-        .modal-img img { width: 100%; height: 100%; object-fit: cover; }
-        .modal-info { padding: 40px; }
-        .modal-info h2 { font-family: var(--font-title); font-size: 2rem; margin-bottom: 20px; }
-        .modal-info .price { color: var(--gold); font-size: 1.5rem; font-weight: 700; margin-bottom: 20px; display: block; }
-        .modal-info p { margin-bottom: 30px; color: #444; }
+        #productModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(10px); }
+        .modal-content { background: var(--silk); width: 95%; max-width: 1100px; max-height: 90vh; overflow: hidden; position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; box-shadow: 0 50px 100px rgba(0,0,0,0.5); }
+        .modal-close { position: absolute; top: 25px; right: 25px; font-size: 2rem; cursor: pointer; z-index: 10; color: var(--deep-sea); }
+        .modal-img { background: white; height: 90vh; }
+        .modal-img img { width: 100%; height: 100%; object-fit: contain; }
+        .modal-info { padding: 60px; display: flex; flex-direction: column; justify-content: center; overflow-y: auto; }
+        .modal-info h2 { font-family: var(--font-title); font-size: 2.2rem; margin-bottom: 25px; color: var(--deep-sea); line-height: 1.2; }
+        .modal-info .price { color: var(--gold); font-size: 1.8rem; font-weight: 500; margin-bottom: 30px; display: block; font-family: var(--font-title); }
+        .modal-info p { margin-bottom: 40px; color: #555; font-size: 1.1rem; line-height: 1.8; }
+        .modal-cta { padding: 18px 40px; background: var(--seal-red); color: white; text-decoration: none; text-align: center; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; }
+        .modal-cta:hover { background: var(--deep-sea); }
 
         @media (max-width: 768px) {
             .modal-content { grid-template-columns: 1fr; }
@@ -140,11 +151,12 @@
         </div>
     </section>
 
-    <section id="heritage" style="background: #f4f4f4; padding: 100px 8%; text-align: center;">
+    <section id="heritage" style="background: white; padding: 120px 8%; text-align: center;">
         <div class="section-title">
             <h2 id="heritage_title">Our Heritage</h2>
+            <p>Traditional Craftsmanship & Global Vision</p>
         </div>
-        <p id="heritage_desc" style="max-width: 800px; margin: 0 auto; line-height: 2;">
+        <p id="heritage_desc" style="max-width: 900px; margin: 0 auto; line-height: 2.2; font-size: 1.15rem; color: #444; font-weight: 300; letter-spacing: 0.5px;">
             Luminous Aura is a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>. 
             We leverage our deep connections with certified 1688 jewelry suppliers to bring you high-end designs 
             at direct-to-consumer value, ensuring quality and authenticity in every shipment to our global clientele.
@@ -228,15 +240,17 @@
         }
 
         function openModal(index) {
-            const product = window.productData[index];
-            document.getElementById('modalImg').innerHTML = `<img src="${product.image}" alt="${product.title}">`;
+            const p = window.productData[index];
+            const modal = document.getElementById('productModal');
+            document.getElementById('modalImg').innerHTML = `<img src="${p.image}" alt="${p.title}">`;
             document.getElementById('modalInfo').innerHTML = `
-                <h2>${product.title}</h2>
-                <span class="price">$${product.price}</span>
-                <p>Premium quality craftsmanship. Sourced from certified suppliers to ensure the highest standards of beauty and durability.</p>
-                <a href="https://wa.me/8618663543398" class="btn-gold" target="_blank">Inquire via WhatsApp</a>
+                <h2>${p.title}</h2>
+                <span class="price">$${p.price}</span>
+                <p>Category: ${p.category}</p>
+                <a href="mailto:luminousaura001@gmail.com?subject=Inquiry: ${p.title}" class="modal-cta">Inquire for Bespoke Order</a>
             `;
-            document.getElementById('productModal').style.display = 'flex';
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
