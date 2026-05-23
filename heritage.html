@@ -48,13 +48,28 @@
         </nav>
     </header>
     <div class="container">
-        <h1>Our Heritage</h1>
-        <p>At Luminous Aura, our heritage is a tapestry woven from global trade expertise and a deep appreciation for the arts. Rooted in Shandong, a region with a rich history of commerce and education, we bring a scholarly approach to the jewelry industry.</p>
-        <h2>Global Sourcing Excellence</h2>
-        <p>Our journey begins at the source. We maintain rigorous standards, partnering exclusively with certified suppliers who share our commitment to ethical sourcing and material purity. By bypassing traditional retail markups, we ensure that the heritage of fine jewelry remains a shared luxury.</p>
-        <h2>The Art of the Pearl</h2>
-        <p>Specializing in Shell and Freshwater pearls, we honor the ancient connection between the sea and human adornment. Each pearl is selected for its luster and surface quality, embodying the "Luminous Aura" that defines our brand.</p>
+        <h1 id="page_title">Our Heritage</h1>
+        <p id="page_intro">At Luminous Aura, our heritage is a tapestry woven from global trade expertise and a deep appreciation for the arts. Rooted in Shandong, a region with a rich history of commerce and education, we bring a scholarly approach to the jewelry industry.</p>
+        <h2 id="sourcing_title">Global Sourcing Excellence</h2>
+        <p id="sourcing_desc">Our journey begins at the source. We maintain rigorous standards, partnering exclusively with certified suppliers who share our commitment to ethical sourcing and material purity. By bypassing traditional retail markups, we ensure that the heritage of fine jewelry remains a shared luxury.</p>
+        <h2 id="art_title">The Art of the Pearl</h2>
+        <p id="art_desc">Specializing in Shell and Freshwater pearls, we honor the ancient connection between the sea and human adornment. Each pearl is selected for its luster and surface quality, embodying the "Luminous Aura" that defines our brand.</p>
     </div>
+    <script>
+        async function loadContent() {
+            try {
+                const res = await fetch('content/heritage.json');
+                const d = await res.json();
+                if(d.title) document.getElementById('page_title').innerText = d.title;
+                if(d.intro) document.getElementById('page_intro').innerText = d.intro;
+                if(d.sourcing_title) document.getElementById('sourcing_title').innerText = d.sourcing_title;
+                if(d.sourcing_desc) document.getElementById('sourcing_desc').innerText = d.sourcing_desc;
+                if(d.art_title) document.getElementById('art_title').innerText = d.art_title;
+                if(d.art_desc) document.getElementById('art_desc').innerText = d.art_desc;
+            } catch(e) {}
+        }
+        loadContent();
+    </script>
     <footer>
         <div class="footer-grid">
             <div class="footer-col"><h3>Luminous Aura</h3><p>A Shandong Mingzhi Project.</p></div>
