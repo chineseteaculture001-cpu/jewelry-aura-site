@@ -57,20 +57,32 @@
             <div class="contact-method">
                 <i class="fab fa-whatsapp"></i>
                 <h3>WhatsApp Business</h3>
-                <p>+86 18663543398</p>
+                <p id="contact_whatsapp">+86 18663543398</p>
             </div>
             <div class="contact-method">
                 <i class="fas fa-envelope"></i>
                 <h3>Email Inquiries</h3>
-                <p>luminousaura001@gmail.com</p>
+                <p id="contact_email">luminousaura001@gmail.com</p>
             </div>
             <div class="contact-method">
                 <i class="fas fa-map-marker-alt"></i>
                 <h3>Global Headquarters</h3>
-                <p>Shandong, China</p>
+                <p id="contact_loc">Shandong, China</p>
             </div>
         </div>
     </div>
+    <script>
+        async function loadContent() {
+            try {
+                const res = await fetch('content/contact.json');
+                const c = await res.json();
+                if(c.whatsapp) document.getElementById('contact_whatsapp').innerText = c.whatsapp;
+                if(c.email) document.getElementById('contact_email').innerText = c.email;
+                if(c.location) document.getElementById('contact_loc').innerText = c.location;
+            } catch(e) {}
+        }
+        loadContent();
+    </script>
     <footer>
         <p style="text-align: center; font-size: 0.8rem; color: #ccc;">&copy; 2026 LUMINOUS AURA. ALL RIGHTS RESERVED.</p>
     </footer>
