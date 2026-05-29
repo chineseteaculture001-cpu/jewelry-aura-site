@@ -302,7 +302,7 @@
                 
                 card.innerHTML = `
                     <div class="product-img">
-                        <img data-src="${imgSrc}" class="lazy" onload="this.classList.add('loaded')" onerror="this.src='https://via.placeholder.com/600x600?text=Jewelry+Aura'">
+                        <img data-src="${imgSrc}" class="lazy" onerror="this.src='https://via.placeholder.com/600x600?text=Jewelry+Aura'">
                     </div>
                     <div class="product-info">
                         <p class="category">${p.category}</p>
@@ -327,10 +327,12 @@
             entries.forEach(function(entry) {
                 if (entry.isIntersecting) {
                     let lazyImage = entry.target;
-                    lazyImage.src = lazyImage.dataset.src;
-                    lazyImage.onload = () => lazyImage.classList.add('loaded');
-                    lazyImage.classList.remove("lazy");
-                    lazyImageObserver.unobserve(lazyImage);
+                    if (lazyImage.dataset.src) {
+                        lazyImage.src = lazyImage.dataset.src;
+                        lazyImage.classList.add('loaded'); // Force visibility immediately
+                        lazyImage.classList.remove("lazy");
+                        lazyImageObserver.unobserve(lazyImage);
+                    }
                 }
             });
         }, { rootMargin: '400px' }) : null;
@@ -340,7 +342,12 @@
             if (lazyImageObserver) {
                 lazyImages.forEach(img => lazyImageObserver.observe(img));
             } else {
-                lazyImages.forEach(img => { img.src = img.dataset.src; img.classList.add('loaded'); });
+                lazyImages.forEach(img => { 
+                    if (img.dataset.src) {
+                        img.src = img.dataset.src; 
+                        img.classList.add('loaded'); 
+                    }
+                });
             }
         }
 
