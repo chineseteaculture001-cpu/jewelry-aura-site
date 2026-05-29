@@ -3,8 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="referrer" content="no-referrer">
-    <title>Luminous Aura | Luxury Jewelry & Fine Craftsmanship</title>
+    <title>Jewelry Aura | Luxury Jewelry & Fine Craftsmanship</title>
     <meta name="description" content="Discover exquisite jewelry sourced from top certified suppliers. High-end designs at direct-to-consumer value.">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -20,12 +19,13 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--deep-sea); color: var(--silk); font-family: var(--font-main); line-height: 1.8; overflow-x: hidden; }
+        body { background-color: var(--deep-sea); color: var(--silk); font-family: var(--font-main); line-height: 1.8; overflow-x: hidden; width: 100vw; }
 
         header {
             padding: 25px 8%; display: flex; justify-content: space-between; align-items: center;
             background: rgba(0, 12, 24, 0.9); backdrop-filter: blur(20px);
             position: sticky; top: 0; z-index: 2000; border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            width: 100%;
         }
         .brand-logo { display: flex; align-items: center; gap: 15px; text-decoration: none; }
         .brand-logo .seal {
@@ -42,6 +42,28 @@
         nav a { text-decoration: none; color: var(--silk); font-weight: 400; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; transition: 0.3s; opacity: 0.8; }
         nav a:hover { color: var(--gold); opacity: 1; }
 
+        .hero {
+            height: 90vh; position: relative; background: #000; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-video {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;
+            pointer-events: none; opacity: 0.5;
+        }
+        .hero-video iframe {
+            width: 100vw; height: 56.25vw; min-height: 100vh; min-width: 177.77vh;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            border: none;
+        }
+        .hero-content {
+            z-index: 10; text-align: center; max-width: 900px; padding: 60px;
+            background: rgba(0, 12, 24, 0.75); border: 1px solid rgba(197, 160, 89, 0.3);
+            backdrop-filter: blur(10px);
+        }
+        .hero-content h2 { font-family: var(--font-title); font-size: 4rem; color: var(--gold); margin-bottom: 10px; line-height: 1; }
+        .hero-content p { font-size: 1rem; text-transform: uppercase; letter-spacing: 5px; color: var(--silk); opacity: 0.9; margin-bottom: 30px; }
+        .hero-content .cn-sub { font-family: serif; font-size: 1.8rem; display: block; color: var(--gold); margin-bottom: 20px; letter-spacing: 8px; }
+
         .category-filter {
             display: flex; justify-content: center; gap: 15px; padding: 25px 8%; background: var(--deep-sea);
             border-bottom: 1px solid rgba(197, 160, 89, 0.1); flex-wrap: wrap; position: sticky; top: 100px; z-index: 1000;
@@ -57,279 +79,305 @@
             display: flex; justify-content: center; align-items: center; gap: 30px;
             padding: 40px 8% 20px; background: var(--deep-sea); flex-wrap: wrap;
         }
-        .search-box {
-            position: relative; width: 350px;
-        }
+        .search-box { position: relative; width: 400px; }
         .search-box input {
-            width: 100%; padding: 12px 20px 12px 45px; background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(197, 160, 89, 0.2); color: var(--silk);
-            font-family: var(--font-main); font-size: 0.85rem; border-radius: 0;
-            transition: 0.3s;
+            width: 100%; background: none; border: none; border-bottom: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 12px 0; color: var(--silk); font-family: var(--font-main); font-size: 0.9rem; outline: none; transition: 0.3s;
         }
-        .search-box i {
-            position: absolute; left: 18px; top: 50%; transform: translateY(-50%);
-            color: var(--gold); font-size: 0.9rem;
+        .search-box input:focus { border-bottom-color: var(--gold); }
+        .sort-select {
+            background: none; border: 1px solid rgba(197, 160, 89, 0.3); color: var(--silk);
+            padding: 8px 20px; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px; outline: none; cursor: pointer;
         }
-        .search-box input:focus {
-            outline: none; border-color: var(--gold); background: rgba(255,255,255,0.1);
-        }
-        .sort-box select {
-            padding: 12px 25px; background: var(--deep-sea); color: var(--gold);
-            border: 1px solid rgba(197, 160, 89, 0.2); font-family: var(--font-main);
-            font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px;
-            cursor: pointer; transition: 0.3s;
-        }
-        .sort-box select:focus { outline: none; border-color: var(--gold); }
 
-        .hero {
-            height: 95vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            text-align: center; background: linear-gradient(rgba(0,12,24,0.6), rgba(0,12,24,0.6)), url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover; background-position: center; color: white; padding: 0 8%;
-        }
-        .hero-content h2 { font-family: var(--font-title); font-size: 5rem; margin-bottom: 25px; letter-spacing: 8px; text-transform: uppercase; font-weight: 400; }
-        .hero-content p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 50px; font-weight: 300; letter-spacing: 2px; opacity: 0.8; }
-        .btn-gold {
-            padding: 20px 50px; background: var(--gold); color: var(--deep-sea); text-decoration: none;
-            font-weight: 600; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 4px;
-            transition: 0.4s; border: 1px solid var(--gold);
-        }
-        .btn-gold:hover { background: transparent; color: white; border-color: white; backdrop-filter: blur(5px); }
-
-        .section-title { text-align: center; padding: 140px 8% 60px; }
-        .section-title h2 { font-family: var(--font-title); font-size: 3.2rem; color: var(--gold); margin-bottom: 15px; letter-spacing: 3px; font-weight: 400; }
-
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 50px; padding: 0 8% 140px; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 40px; padding: 60px 8%; }
         .product-card {
-            background: #00172d; border-radius: 0; overflow: hidden; transition: 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
-            border: 1px solid rgba(197, 160, 89, 0.1); position: relative; cursor: pointer;
+            background: var(--luxury-navy); border: 1px solid rgba(197, 160, 89, 0.1);
+            transition: 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); cursor: pointer; position: relative;
         }
-        .product-card:hover { transform: translateY(-15px); border-color: var(--gold); }
-        .product-card img { width: 100%; height: 400px; object-fit: cover; transition: 1s; opacity: 0.9; }
-        .product-card:hover img { transform: scale(1.05); opacity: 1; }
-        .product-info { padding: 35px 25px; text-align: center; background: linear-gradient(to bottom, #00172d, #000c18); }
-        .product-info h3 { font-family: var(--font-title); font-size: 1rem; color: var(--silk); margin-bottom: 18px; height: 3rem; overflow: hidden; letter-spacing: 1px; font-weight: 400; opacity: 0.9; }
-        .product-info .price { font-size: 1.3rem; color: var(--gold); font-weight: 300; font-family: var(--font-title); letter-spacing: 1px; }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
+        .product-img { width: 100%; aspect-ratio: 1/1; overflow: hidden; background: #001529; position: relative; }
+        .product-img img { width: 100%; height: 100%; object-fit: cover; transition: 0.8s; opacity: 0; }
+        .product-img img.loaded { opacity: 1; }
+        /* Skeleton Animation */
+        .product-img::after {
+            content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.03), transparent);
+            animation: shimmer 2s infinite;
+        }
+        @keyframes shimmer { 100% { left: 100%; } }
 
-        footer { background: #000810; color: var(--silk); padding: 120px 8% 40px; border-top: 1px solid rgba(197, 160, 89, 0.1); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 80px; }
-        .footer-col h3 { font-family: var(--font-title); margin-bottom: 30px; color: var(--gold); font-size: 1.5rem; letter-spacing: 2px; font-weight: 400; }
-        .footer-col p, .footer-col li { font-size: 0.9rem; color: rgba(244, 241, 234, 0.6); margin-bottom: 15px; list-style: none; font-weight: 300; letter-spacing: 1px; }
-        .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); margin-top: 100px; padding-top: 40px; text-align: center; font-size: 0.7rem; color: rgba(244, 241, 234, 0.3); letter-spacing: 3px; }
+        .product-card:hover .product-img img { transform: scale(1.1); }
+        .product-info { padding: 30px; text-align: center; }
+        .product-info p.category { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; color: var(--gold); margin-bottom: 12px; }
+        .product-info h3 { font-family: var(--font-title); font-size: 1.1rem; font-weight: 400; margin-bottom: 10px; color: var(--silk); }
+        .product-info .price { font-size: 1.2rem; font-weight: 600; color: var(--silk); }
 
-        /* Modal Styles */
-        #productModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,12,24,0.95); z-index: 3000; align-items: center; justify-content: center; backdrop-filter: blur(15px); }
-        .modal-content { background: #00172d; width: 95%; max-width: 1200px; height: 85vh; overflow: hidden; position: relative; display: grid; grid-template-columns: 1.2fr 0.8fr; border: 1px solid rgba(197, 160, 89, 0.2); }
-        .modal-close { position: absolute; top: 30px; right: 30px; font-size: 2rem; cursor: pointer; z-index: 10; color: var(--silk); opacity: 0.5; transition: 0.3s; }
-        .modal-close:hover { opacity: 1; }
-        .modal-img { background: white; height: 100%; }
-        .modal-img img { width: 100%; height: 100%; object-fit: contain; }
-        .modal-info { padding: 80px 60px; display: flex; flex-direction: column; justify-content: center; }
-        .modal-info h2 { font-family: var(--font-title); font-size: 2.5rem; margin-bottom: 30px; color: var(--silk); line-height: 1.2; font-weight: 400; }
-        .modal-info .price { color: var(--gold); font-size: 2rem; font-weight: 300; margin-bottom: 40px; display: block; font-family: var(--font-title); }
-        .modal-info p { margin-bottom: 50px; color: rgba(244, 241, 234, 0.7); font-size: 1.1rem; line-height: 2; font-weight: 300; }
-        .modal-cta { padding: 22px 40px; background: var(--seal-red); color: white; text-decoration: none; text-align: center; font-weight: 600; text-transform: uppercase; letter-spacing: 4px; transition: 0.4s; font-size: 0.8rem; }
-        .modal-cta:hover { background: var(--gold); color: var(--deep-sea); }
+        .load-more { text-align: center; padding: 40px 0 100px; }
+        .btn-luxury {
+            display: inline-block; padding: 15px 50px; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none; text-transform: uppercase;
+            letter-spacing: 3px; font-size: 0.8rem; transition: 0.3s; background: transparent; cursor: pointer;
+        }
+        .btn-luxury:hover { background: var(--gold); color: white; }
 
-        @media (max-width: 992px) {
-            .modal-content { grid-template-columns: 1fr; height: auto; max-height: 95vh; overflow-y: auto; }
-            .modal-img { height: 400px; }
-            .modal-info { padding: 40px; }
-            .hero-content h2 { font-size: 3rem; }
+        #productModal {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 12, 24, 0.98); z-index: 5000; align-items: center; justify-content: center; padding: 40px;
+        }
+        .modal-container { background: var(--deep-sea); max-width: 1100px; width: 100%; display: grid; grid-template-columns: 1.2fr 1fr; border: 1px solid rgba(197, 160, 89, 0.3); position: relative; }
+        .modal-img { width: 100%; aspect-ratio: 1/1; background: #001529; }
+        .modal-img img { width: 100%; height: 100%; object-fit: cover; }
+        .modal-info { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .modal-info h2 { font-family: var(--font-title); font-size: 2.2rem; color: var(--gold); margin-bottom: 20px; font-weight: 400; }
+        .modal-info .price { font-size: 1.8rem; color: var(--silk); margin-bottom: 30px; display: block; }
+        .modal-info p { font-size: 0.95rem; color: rgba(244, 241, 234, 0.6); margin-bottom: 40px; line-height: 1.8; }
+        .modal-cta {
+            display: inline-block; padding: 18px 40px; background: var(--gold); color: white;
+            text-decoration: none; text-transform: uppercase; letter-spacing: 3px; font-weight: 600;
+            text-align: center; font-size: 0.85rem; transition: 0.3s;
+        }
+        .modal-cta:hover { background: #b08d48; }
+        .close-modal { position: absolute; top: 20px; right: 30px; color: var(--gold); font-size: 2rem; cursor: pointer; }
+
+        footer { padding: 100px 8% 60px; background: #000810; border-top: 1px solid rgba(197, 160, 89, 0.1); }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 80px; }
+        .footer-brand h2 { font-family: var(--font-title); font-size: 1.8rem; color: var(--gold); margin-bottom: 30px; letter-spacing: 2px; }
+        .footer-brand p { color: rgba(244, 241, 234, 0.5); font-size: 0.9rem; max-width: 400px; }
+        .footer-links h4 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 30px; }
+        .footer-links ul { list-style: none; }
+        .footer-links li { margin-bottom: 15px; }
+        .footer-links a { text-decoration: none; color: rgba(244, 241, 234, 0.6); font-size: 0.85rem; transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
+        .contact-info p { font-size: 0.85rem; color: rgba(244, 241, 234, 0.6); margin-bottom: 15px; }
+        .contact-info a { color: var(--gold); text-decoration: none; }
+
+        @media (max-width: 900px) {
+            .modal-container { grid-template-columns: 1fr; max-height: 90vh; overflow-y: auto; }
+            .footer-grid { grid-template-columns: 1fr; gap: 50px; }
+            .hero-content h2 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
+
     <header>
         <a href="index.html" class="brand-logo">
             <div class="seal">Aura</div>
-            <h1>Luminous Aura</h1>
+            <h1>Jewelry Aura</h1>
         </a>
         <nav>
             <ul>
-                <li><a href="index.html" style="color:var(--gold); opacity: 1;">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="heritage.html">Heritage</a></li>
-                <li><a href="journal.html">Journal</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
+    <div class="hero">
+        <div class="hero-video">
+            <iframe id="hero-iframe" src="" frameborder="0" allow="autoplay; fullscreen"></iframe>
+        </div>
         <div class="hero-content">
-            <h2>Radiance Reimagined</h2>
-            <p>Experience the allure of fine jewelry, where every piece is a testament to luxury and artisan excellence.</p>
-            <a href="#collections" class="btn-gold">Explore Collection</a>
-        </div>
-    </section>
-
-    <section id="collections">
-        <div class="section-title">
-            <h2>Our Collection</h2>
-        </div>
-        <div class="search-sort-bar">
-            <div class="search-box">
-                <i class="fas fa-search"></i>
-                <input type="text" id="searchInput" placeholder="Search by keyword (e.g. Pearl, Gold, Ring)..." oninput="handleSearch()">
-            </div>
-            <div class="sort-box">
-                <select id="sortSelect" onchange="handleSort()">
-                    <option value="default">Default Sorting</option>
-                    <option value="price-low">Price: Low to High</option>
-                    <option value="price-high">Price: High to Low</option>
-                    <option value="name-az">Name: A to Z</option>
-                </select>
-            </div>
-        </div>
-        <div class="category-filter" id="categoryFilter">
-            <button class="filter-btn active" onclick="filterProducts('All')">All</button>
-            <button class="filter-btn" onclick="filterProducts('Necklaces')">Necklaces</button>
-            <button class="filter-btn" onclick="filterProducts('Earrings')">Earrings</button>
-            <button class="filter-btn" onclick="filterProducts('Bracelets')">Bracelets</button>
-            <button class="filter-btn" onclick="filterProducts('Rings')">Rings</button>
-            <button class="filter-btn" onclick="filterProducts('Jewelry Sets')">Sets</button>
-            <button class="filter-btn" onclick="filterProducts('DIY & Materials')">DIY & Materials</button>
-            <button class="filter-btn" onclick="filterProducts('Fine Jewelry')">Fine Jewelry</button>
-        </div>
-        <div id="productGrid" class="product-grid">
-            <!-- Products will be loaded here -->
-        </div>
-    </section>
-
-    <section id="heritage" style="background: #00172d; padding: 140px 8%; text-align: center; border-top: 1px solid rgba(197, 160, 89, 0.1);">
-        <div class="section-title" style="padding-top: 0;">
-            <h2 id="heritage_title" style="color: var(--gold);">Our Heritage</h2>
-            <p style="color: var(--silk); opacity: 0.6; letter-spacing: 3px; text-transform: uppercase; font-size: 0.8rem;">Traditional Craftsmanship & Global Vision</p>
-        </div>
-        <p id="heritage_desc" style="max-width: 900px; margin: 0 auto; line-height: 2.4; font-size: 1.1rem; color: var(--silk); font-weight: 300; letter-spacing: 1px; opacity: 0.8;">
-            Luminous Aura is a subsidiary of <strong>Shandong Mingzhi Education Consulting</strong>. 
-            We leverage our deep connections with certified 1688 jewelry suppliers to bring you high-end designs 
-            at direct-to-consumer value, ensuring quality and authenticity in every shipment to our global clientele.
-        </p>
-    </section>
-
-    <footer id="contact">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <h3>Luminous Aura</h3>
-                <p id="footer_slogan">A Shandong Mingzhi Project. Curating brilliance for the modern connoisseur.</p>
-            </div>
-            <div class="footer-col">
-                <h3>Concierge</h3>
-                <ul>
-                    <li><i class="fab fa-whatsapp"></i> <span id="contact_whatsapp">+86 18663543398</span></li>
-                    <li><i class="fas fa-envelope"></i> <span id="contact_email">luminousaura001@gmail.com</span></li>
-                    <li><i class="fas fa-map-marker-alt"></i> <span id="contact_loc">Based in Shandong, China</span></li>
-                </ul>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            &copy; 2026 LUMINOUS AURA. ALL RIGHTS RESERVED.
-        </div>
-    </footer>
-
-    <div id="productModal">
-        <div class="modal-content">
-            <span class="modal-close" onclick="closeModal()">&times;</span>
-            <div class="modal-img" id="modalImg"></div>
-            <div class="modal-info" id="modalInfo"></div>
+            <p>ESTABLISHED 2026</p>
+            <h2 id="hero_title">JEWELRY AURA</h2>
+            <span class="cn-sub">璀璨之境</span>
+            <p id="hero_desc">Luxury Jewelry & Fine Craftsmanship</p>
+            <a href="#collection" class="btn-luxury">Explore the Collection 探索系列</a>
         </div>
     </div>
 
+    <div class="category-filter" id="categoryFilter">
+        <button class="filter-btn active" onclick="filterProducts('All')">All Pieces</button>
+        <button class="filter-btn" onclick="filterProducts('Ring')">Rings</button>
+        <button class="filter-btn" onclick="filterProducts('Necklace')">Necklaces</button>
+        <button class="filter-btn" onclick="filterProducts('Earring')">Earrings</button>
+        <button class="filter-btn" onclick="filterProducts('Bracelet')">Bracelets</button>
+    </div>
+
+    <div class="search-sort-bar">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by name, material or category..." onkeyup="handleSearch()">
+        </div>
+        <select class="sort-select" id="sortSelect" onchange="handleSort()">
+            <option value="default">Default Sorting</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+        </select>
+    </div>
+
+    <div class="product-grid" id="productGrid">
+        <!-- Products load here -->
+    </div>
+
+    <div class="load-more">
+        <button id="loadMoreBtn" class="btn-luxury" onclick="loadNextPage()">Load More Pieces 更多作品</button>
+    </div>
+
+    <div id="productModal">
+        <div class="modal-container">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <div class="modal-img" id="modalImg"></div>
+                <div class="modal-info" id="modalInfo"></div>
+                <div style="padding: 0 60px 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+                    <a id="modal-wa" href="" class="modal-cta">Consult with Concierge</a>
+                    <a id="modal-bulk" href="contact.html" style="text-align:center; padding:18px; border:1px solid var(--gold); color:var(--gold); text-decoration:none; text-transform:uppercase; letter-spacing:3px; font-weight:600; font-size:0.8rem; transition:0.3s;">Bulk Inquiry</a>
+                </div>
+            </div>
+        </div>
+
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h2>Jewelry Aura</h2>
+                <p id="footer_slogan">Crafting eternity through exquisite design and certified quality. Shandong Mingzhi Education Group.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Information</h4>
+                <ul>
+                    <li><a href="about.html">Our Heritage</a></li>
+                    <li><a href="contact.html">Private Consultation</a></li>
+                    <li><a href="#">Shipping & Returns</a></li>
+                </ul>
+            </div>
+            <div class="contact-info">
+                <h4>Concierge</h4>
+                <p>WhatsApp: <a href="#" id="contact_whatsapp">+86 186 6354 3398</a></p>
+                <p>Email: <a href="#" id="contact_email">chineseteaculture001@gmail.com</a></p>
+                <p>Location: <span id="contact_loc">Shandong, China</span></p>
+            </div>
+        </div>
+        <p style="text-align: center; color: rgba(244, 241, 234, 0.3); font-size: 0.75rem; margin-top: 60px;">&copy; 2026 JEWELRY AURA. ALL RIGHTS RESERVED.</p>
+    </footer>
+
     <script>
+        let allProducts = [];
+        let filteredProducts = [];
         let currentFilter = 'All';
         let currentSearch = '';
         let currentSort = 'default';
+        let displayedCount = 0;
+        const PAGE_SIZE = 24;
+        const base_url = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
 
         async function loadProducts() {
             try {
-                const response = await fetch('products.json');
-                const data = await response.json();
-                window.productData = data.products || data; 
-                renderProducts();
-            } catch (error) {
-                console.error('Error loading products:', error);
+                const response = await fetch('content/all_products_combined.json');
+                allProducts = await response.json();
+                applyFilterAndSort();
+            } catch (e) {
+                console.error("Failed to load products", e);
             }
         }
 
-        function renderProducts() {
+        function applyFilterAndSort() {
+            filteredProducts = allProducts.filter(p => {
+                const matchCategory = currentFilter === 'All' || p.category === currentFilter;
+                const matchSearch = p.title.toLowerCase().includes(currentSearch.toLowerCase()) || 
+                                  p.category.toLowerCase().includes(currentSearch.toLowerCase());
+                return matchCategory && matchSearch;
+            });
+
+            if (currentSort === 'price-asc') {
+                filteredProducts.sort((a, b) => a.price - b.price);
+            } else if (currentSort === 'price-desc') {
+                filteredProducts.sort((a, b) => b.price - a.price);
+            }
+
+            displayedCount = 0;
+            document.getElementById('productGrid').innerHTML = '';
+            loadNextPage();
+        }
+
+        function loadNextPage() {
             const grid = document.getElementById('productGrid');
+            const nextBatch = filteredProducts.slice(displayedCount, displayedCount + PAGE_SIZE);
             
-            // 1. Filter by Category
-            let filtered = currentFilter === 'All' 
-                ? [...window.productData]
-                : window.productData.filter(p => p.category === currentFilter);
-            
-            // 2. Filter by Search Keyword
-            if (currentSearch) {
-                const kw = currentSearch.toLowerCase();
-                filtered = filtered.filter(p => 
-                    p.title.toLowerCase().includes(kw) || 
-                    (p.category && p.category.toLowerCase().includes(kw))
-                );
-            }
-
-            // 3. Sort
-            if (currentSort === 'price-low') {
-                filtered.sort((a, b) => a.price - b.price);
-            } else if (currentSort === 'price-high') {
-                filtered.sort((a, b) => b.price - a.price);
-            } else if (currentSort === 'name-az') {
-                filtered.sort((a, b) => a.title.localeCompare(b.title));
-            }
-            
-            if (filtered.length === 0) {
-                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 100px 0; color: var(--gold); opacity: 0.6; letter-spacing: 2px;">No products found matching your criteria.</div>`;
-                return;
-            }
-
-            grid.innerHTML = filtered.map((p, index) => {
-                const originalIndex = window.productData.indexOf(p);
-                return `
-                    <div class="product-card" onclick="openModal(${originalIndex})">
-                        <img src="${p.image}" alt="${p.title}" loading="lazy">
-                        <div class="product-info">
-                            <h3>${p.title}</h3>
-                            <p class="price">$${p.price}</p>
-                        </div>
+            nextBatch.forEach((p, idx) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                card.onclick = () => openModal(displayedCount + idx);
+                
+                const imgSrc = p.image ? (p.image.startsWith('http') ? p.image : base_url + p.image) : 'https://via.placeholder.com/600x600?text=Jewelry+Aura';
+                
+                card.innerHTML = `
+                    <div class="product-img">
+                        <img data-src="${imgSrc}" class="lazy" onload="this.classList.add('loaded')" onerror="this.src='https://via.placeholder.com/600x600?text=Jewelry+Aura'">
+                    </div>
+                    <div class="product-info">
+                        <p class="category">${p.category}</p>
+                        <h3>${p.title}</h3>
+                        <p class="price">$${p.price}</p>
                     </div>
                 `;
-            }).join('');
+                grid.appendChild(card);
+            });
+
+            displayedCount += PAGE_SIZE;
+            initLazyLoading();
+
+            if (displayedCount >= filteredProducts.length) {
+                document.getElementById('loadMoreBtn').style.display = 'none';
+            } else {
+                document.getElementById('loadMoreBtn').style.display = 'inline-block';
+            }
+        }
+
+        function initLazyLoading() {
+            const lazyImages = [].slice.call(document.querySelectorAll("img.lazy"));
+            if ("IntersectionObserver" in window) {
+                let lazyImageObserver = new IntersectionObserver(function(entries, observer) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            let lazyImage = entry.target;
+                            lazyImage.src = lazyImage.dataset.src;
+                            lazyImageObserver.unobserve(lazyImage);
+                        }
+                    });
+                });
+                lazyImages.forEach(function(lazyImage) {
+                    lazyImageObserver.observe(lazyImage);
+                });
+            }
         }
 
         function filterProducts(category) {
             currentFilter = category;
             const btns = document.querySelectorAll('.filter-btn');
             btns.forEach(btn => {
-                if (btn.getAttribute('onclick').includes(`'${category}'`)) {
+                if (btn.innerText.toLowerCase().includes(category.toLowerCase()) || (category === 'All' && btn.innerText.includes('All'))) {
                     btn.classList.add('active');
                 } else {
                     btn.classList.remove('active');
                 }
             });
-            renderProducts();
+            applyFilterAndSort();
         }
 
         function handleSearch() {
             currentSearch = document.getElementById('searchInput').value;
-            renderProducts();
+            applyFilterAndSort();
         }
 
         function handleSort() {
             currentSort = document.getElementById('sortSelect').value;
-            renderProducts();
+            applyFilterAndSort();
         }
 
         function openModal(index) {
-            const p = window.productData[index];
+            const p = filteredProducts[index];
             const modal = document.getElementById('productModal');
-            document.getElementById('modalImg').innerHTML = `<img src="${p.image}" alt="${p.title}">`;
+            const imgSrc = p.image ? (p.image.startsWith('http') ? p.image : base_url + p.image) : 'https://via.placeholder.com/600x600?text=Jewelry+Aura';
+            
+            document.getElementById('modalImg').innerHTML = `<img src="${imgSrc}" alt="${p.title}">`;
             document.getElementById('modalInfo').innerHTML = `
                 <h2>${p.title}</h2>
                 <span class="price">$${p.price}</span>
-                <p>Category: ${p.category}. This exquisite piece is sourced from our certified premium suppliers, ensuring the highest standard of craftsmanship and material purity.</p>
-                <a href="mailto:luminousaura001@gmail.com?subject=Inquiry: ${p.title}" class="modal-cta">Inquire for Bespoke Order</a>
+                <p>Collection: ${p.category}. This piece is meticulously crafted and verified for the ultimate luxury experience. For serious inquiries and bespoke adjustments, contact our concierge directly.</p>
             `;
+            document.getElementById('modal-wa').href = `https://wa.me/8618663543398?text=I am interested in ${p.title}`;
+            document.getElementById('modal-bulk').href = `contact.html?product=${encodeURIComponent(p.title)}`;
             modal.style.display = 'flex';
             document.body.style.overflow = 'hidden';
         }
@@ -345,29 +393,19 @@
             }
         }
 
-        loadProducts();
-        loadSettings();
-
-        async function loadSettings() {
+        async function init() {
             try {
                 const homeRes = await fetch('content/home.json');
                 const s = await homeRes.json();
-                if(s.hero_title) document.querySelector('.hero-content h2').innerText = s.hero_title;
-                if(s.hero_desc) document.querySelector('.hero-content p').innerText = s.hero_desc;
-
-                const heritageRes = await fetch('content/heritage.json');
-                const h = await heritageRes.json();
-                if(h.title) document.getElementById('heritage_title').innerText = h.title;
-                if(h.intro) document.getElementById('heritage_desc').innerText = h.intro;
-
-                const contactRes = await fetch('content/contact.json');
-                const c = await contactRes.json();
-                if(c.footer_text) document.getElementById('footer_slogan').innerText = c.footer_text;
-                if(c.whatsapp) document.getElementById('contact_whatsapp').innerText = c.whatsapp;
-                if(c.email) document.getElementById('contact_email').innerText = c.email;
-                if(c.location) document.getElementById('contact_loc').innerText = c.location;
+                if(s.hero_video_id) {
+                    const vid = s.hero_video_id;
+                    document.getElementById('hero-iframe').src = `https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&loop=1&playlist=${vid}&controls=0&showinfo=0&rel=0&iv_load_policy=3&enablejsapi=1&origin=${window.location.origin}`;
+                }
             } catch(e) {}
+            loadProducts();
         }
+
+        init();
     </script>
 </body>
 </html>
