@@ -3,8 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jewelry Aura | Luxury Jewelry & Fine Craftsmanship</title>
-    <meta name="description" content="Discover exquisite jewelry sourced from top certified suppliers. High-end designs at direct-to-consumer value.">
+    <title>Jewelry Aura | Timeless Elegance & Bespoke Luxury</title>
+    <meta name="description" content="Explore Jewelry Aura's collection of artisan-crafted jewelry. From shell pearls to bespoke sets, experience luxury redefined.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="dns-prefetch" href="https://images.unsplash.com">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
@@ -243,8 +247,10 @@
             </div>
             <div class="contact-info">
                 <h4>Concierge</h4>
-                <p>WhatsApp: <a href="#" id="contact_whatsapp">+86 186 6354 3398</a></p>
-                <p>Email: <a href="#" id="contact_email">chineseteaculture001@gmail.com</a></p>
+                <p>WhatsApp 1: <a href="https://wa.me/8618663543398">+86 186 6354 3398</a></p>
+                <p>WhatsApp 2: <a href="https://wa.me/8615589482015">+86 155 8948 2015</a></p>
+                <p>Email 1: <a href="mailto:chinesejewelryaura001@thejaderitual.com">chinesejewelryaura001@thejaderitual.com</a></p>
+                <p>Email 2: <a href="mailto:chinesejewelryaura002@thejaderitual.com">chinesejewelryaura002@thejaderitual.com</a></p>
                 <p>Location: <span id="contact_loc">Shandong, China</span></p>
             </div>
         </div>
@@ -294,6 +300,8 @@
             const nextBatch = filteredProducts.slice(displayedCount, displayedCount + PAGE_SIZE);
             
             nextBatch.forEach((p, idx) => {
+                const totalIdx = displayedCount + idx;
+                const isPriority = totalIdx < 8; // Load first 8 items with priority
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 card.onclick = () => openModal(displayedCount + idx);
@@ -302,12 +310,14 @@
                 
                 card.innerHTML = `
                     <div class="product-img">
-                        <img data-src="${imgSrc}" class="lazy" onerror="this.src='https://via.placeholder.com/600x600?text=Jewelry+Aura'">
+                        <img ${isPriority ? `src="${imgSrc}" class="loaded" fetchpriority="high"` : `data-src="${imgSrc}" class="lazy"`} 
+                             alt="${p.title}"
+                             onerror="this.src='https://via.placeholder.com/600x600?text=Jewelry+Aura'">
                     </div>
                     <div class="product-info">
                         <p class="category">${p.category}</p>
                         <h3>${p.title}</h3>
-                        <p class="price">$${p.price}</p>
+                        <p class="price">${p.price}</p>
                     </div>
                 `;
                 grid.appendChild(card);
