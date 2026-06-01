@@ -105,7 +105,9 @@
                         <div class="journal-item">
                             <span class="date">${p.date}</span>
                             <h2>${p.title}</h2>
-                            <p>${p.excerpt}</p>
+                            <p class="excerpt">${p.excerpt}</p>
+                            <div class="full-content" style="display:none; white-space: pre-wrap; margin-top: 20px; font-size: 0.95rem; line-height: 1.6; color: rgba(255,255,255,0.8);">${p.content || ""}</div>
+                            <a href="javascript:void(0)" class="read-more" onclick="toggleReadMore(this)" style="color: var(--gold); text-decoration: none; font-weight: bold; display: block; margin-top: 10px;">Read More</a>
                         </div>
                     `).join('');
                 }
@@ -117,6 +119,16 @@
                 if(c.email) document.getElementById('contact_email').innerText = c.email;
                 if(c.location) document.getElementById('contact_loc').innerText = c.location;
             } catch(e) {}
+        }
+        function toggleReadMore(btn) {
+            const item = btn.parentElement;
+            const fullContent = item.querySelector('.full-content');
+            const excerpt = item.querySelector('.excerpt');
+            const isHidden = fullContent.style.display === 'none';
+            
+            fullContent.style.display = isHidden ? 'block' : 'none';
+            excerpt.style.display = isHidden ? 'none' : 'block';
+            btn.innerText = isHidden ? 'Show Less' : 'Read More';
         }
         loadContent();
     </script>

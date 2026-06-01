@@ -304,7 +304,7 @@
                 const isPriority = totalIdx < 8; // Load first 8 items with priority
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.onclick = () => openModal(displayedCount + idx);
+                card.onclick = () => openModal(p);
                 
                 const imgSrc = p.image ? (p.image.startsWith('http') ? p.image : p.image) : 'https://via.placeholder.com/600x600?text=Jewelry+Aura';
                 
@@ -384,8 +384,7 @@
             applyFilterAndSort();
         }
 
-        function openModal(index) {
-            const p = filteredProducts[index];
+        function openModal(p) {
             const modal = document.getElementById('productModal');
             const imgSrc = p.image ? (p.image.startsWith('http') ? p.image : p.image) : 'https://via.placeholder.com/600x600?text=Jewelry+Aura';
             
