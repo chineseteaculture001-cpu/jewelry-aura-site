@@ -31,4 +31,4 @@ Discover the collection where heritage meets modern brilliance. At **Jewelry Aur
 
 **B2B & Distribution:**
 As a subsidiary of **Shandong Mingzhi Education Group**, we offer professional B2B solutions, custom branding, and secure T/T payment facilities for jewelry retailers worldwide.
-Contact: aura@thejaderitual.com | +86 155 8948 2015
+Contact: luminousaura001@gmail.com | +86 155 8948 2015
