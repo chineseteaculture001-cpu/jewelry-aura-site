@@ -194,10 +194,12 @@
 
     <div class="category-filter" id="categoryFilter">
         <button class="filter-btn active" onclick="filterProducts('All')">All Pieces</button>
-        <button class="filter-btn" onclick="filterProducts('Ring')">Rings</button>
-        <button class="filter-btn" onclick="filterProducts('Necklace')">Necklaces</button>
-        <button class="filter-btn" onclick="filterProducts('Earring')">Earrings</button>
-        <button class="filter-btn" onclick="filterProducts('Bracelet')">Bracelets</button>
+        <button class="filter-btn" onclick="filterProducts('Necklaces')">Necklaces</button>
+        <button class="filter-btn" onclick="filterProducts('Earrings')">Earrings</button>
+        <button class="filter-btn" onclick="filterProducts('Rings')">Rings</button>
+        <button class="filter-btn" onclick="filterProducts('Bracelets')">Bracelets</button>
+        <button class="filter-btn" onclick="filterProducts('Jewelry Sets')">Sets</button>
+        <button class="filter-btn" onclick="filterProducts('DIY & Materials')">DIY</button>
     </div>
 
     <div class="search-sort-bar">
@@ -268,8 +270,9 @@
 
         async function loadProducts() {
             try {
-                const response = await fetch('content/all_products_combined.json');
-                allProducts = await response.json();
+                const response = await fetch('products.json');
+                const data = await response.json();
+                allProducts = data.products || data;
                 applyFilterAndSort();
             } catch (e) {
                 console.error("Failed to load products", e);
@@ -278,7 +281,7 @@
 
         function applyFilterAndSort() {
             filteredProducts = allProducts.filter(p => {
-                const matchCategory = currentFilter === 'All' || p.category === currentFilter;
+                const matchCategory = currentFilter === 'All' || (p.category && p.category.toLowerCase() === currentFilter.toLowerCase());
                 const matchSearch = p.title.toLowerCase().includes(currentSearch.toLowerCase()) || 
                                   p.category.toLowerCase().includes(currentSearch.toLowerCase());
                 return matchCategory && matchSearch;
