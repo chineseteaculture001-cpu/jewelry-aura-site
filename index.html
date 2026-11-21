@@ -361,7 +361,7 @@ padding-bottom:3px;text-decoration:none}
                         <p class="category">${p.category}</p>
                         <h3>${p.title}</h3>
                         <p class="price">$${p.price}</p>
-                        ${PDP_SLUGS[p.title] ? `<a class="pdp-link" href="/products/${PDP_SLUGS[p.title]}.html">View details</a>` : ''}
+                        ${PDP_SLUGS[p.title] ? `<a class="pdp-link" href="/products/${PDP_SLUGS[p.title]}.html" onclick="event.stopPropagation()">View details</a>` : ''}
                     </div>
                 `;
                 grid.appendChild(card);
